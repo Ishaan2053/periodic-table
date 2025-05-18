@@ -2,7 +2,7 @@
 
 An elegant, interactive web application that provides an engaging way to explore the periodic table of elements. This project showcases detailed information about chemical elements with beautiful visualizations and animations.
 
-![Periodic Table Preview](https://via.placeholder.com/800x400?text=Periodic+Table+Preview)
+![Periodic Table Preview](/public/Preview.jpeg)
 
 ## 🚀 Features
 
@@ -106,7 +106,7 @@ An elegant, interactive web application that provides an engaging way to explore
 
 ## 👨‍💻 About
 
-This project was created by [ishaan2053](https://github.com/ishaan2053) for the CodeCircuit Hackathon.
+This project was created for the CodeCircuit Hackathon.
 
 ---
 
