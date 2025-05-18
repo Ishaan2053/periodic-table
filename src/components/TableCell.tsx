@@ -42,7 +42,7 @@ const ElementCell = ({
     <div
       className={`
         size-15 rounded p-1 flex flex-col justify-between cursor-pointer
-        transition-all duration-200 ease-in-out border
+        transition-all duration-200 ease-in-out border backdrop-blur-sm
         ${categoryClasses[category]}
         ${isHovered ? "scale-110 z-10 shadow-[0_0_5px_rgba(255,255,255,0.5)]" : ""}
         ${isSelected ? "scale-110 z-10 border-2 shadow-2xl" : ""}
