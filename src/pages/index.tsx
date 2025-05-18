@@ -88,7 +88,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="w-full flex flex-col items-center justify-center flex-grow"
           >
-            <div className="flex md:hidden items-center text-center justify-center text-semibold text-white flex-col text-2xl"> 
+            <div className="flex md:hidden items-center text-center justify-center text-semibold text-white flex-col text-2xl z-50 pointer-events-none"> 
               Switch to desktop mode to view the periodic table
             </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
                 {Object.entries(categoryColors).map(([category, colorClass]) => (
                   <div
                     key={category}
-                    className={`flex items-center gap-2 cursor-pointer px-2 py-1 hover:bg-gray-800 rounded ${
+                    className={`flex items-center gap-2 cursor-pointer px-2 py-1 hover:bg-gray-800 rounded transition ${
                       selectedCategory === category ? "bg-gray-800" : ""
                     }`}
                     onClick={() => handleLegendClick(category as ElementCategory)}

@@ -114,11 +114,9 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
                   <span className="font-semibold">{atomicMass}</span>
                 </motion.p>
               </div>
-            </div>
-          </motion.div>
-          {/* Description */}
-          <motion.div
-            className="md:col-span-3 p-4 rounded-lg"
+
+                <motion.div
+            className="md:col-span-3 rounded-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
@@ -132,10 +130,14 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
               {description}
             </motion.p>
           </motion.div>
+            </div>
+          </motion.div>
+       
+        
 
           {/* Properties */}
           <motion.div
-            className="col-span-2 space-y-4 p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-gray-100/10 shadow-md"
+            className="col-span-2 space-y-4 p-6 rounded-lg backdrop-blur-sm "
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
@@ -216,7 +218,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
   );
 };
 
-// PropertyCard component (add at the end of the file, before the export)
+// PropertyCard Component
 interface PropertyCardProps {
   icon: React.ReactNode;
   name: string;
@@ -227,12 +229,11 @@ interface PropertyCardProps {
 const PropertyCard = ({ icon, name, value, customValue }: PropertyCardProps) => {
   return (
     <motion.div 
-      className="p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-200/20 dark:border-gray-700/30 hover:shadow-lg transition-all"
-      whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.15)" }}
+      className="p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-200/20 dark:border-gray-700/30 shadow hover:shadow-lg transition-all"
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <div className="flex items-center gap-3">
-        <div className="flex-shrink-0 p-2 rounded-full bg-white/10 dark:bg-gray-800/50">
+        <div className="flex-shrink-0 p-2 rounded-full ">
           {icon}
         </div>
         <div className="flex-grow">
