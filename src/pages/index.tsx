@@ -7,6 +7,7 @@ import Link from "next/link";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { GithubIcon, LinkedinIcon } from "lucide-react";
 import { useLenisScroll } from "@/hooks/useLenisScroll";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +62,12 @@ export default function Home() {
 
   return (
     <main className={`bg-gradient-to-b from-slate-950 to-neutral-950 mx-auto flex min-h-screen flex-col items-center justify-between p-2 globalScroll`}>
+      <Head>
+        <title>Interactive Periodic Table</title>
+        <meta name="description" content="Interactive Periodic Table" />
+        <link rel="icon" href="/favicon.ico" />
+
+      </Head>
       {/* <h1 className="text-red-500 text-4xl">Interactive Periodic Table</h1>
       <h3>Hover over elements to see their atomic structure and know more</h3> */}
 

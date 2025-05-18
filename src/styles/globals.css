@@ -134,22 +134,44 @@ body {
   }
 }
 
-
-@layer utilities {
-  .globalScroll {
-    overflow: auto;
-    /* scrollbar-width: thin; */
-    scrollbar-color: hsl(var(--primary)) transparent;
-  }
-  .globalScroll::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  .globalScroll::-webkit-scrollbar-track {
-    background: hsl(var(--secondary)) transparent;
-  }
-  .globalScroll::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--primary));
-    border-radius: 9999px;
-  }
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
+
+::-webkit-scrollbar-track {
+  background: var(--secondary);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) var(--secondary);
+}
+
+/* For dark mode adjustments */
+.dark ::-webkit-scrollbar-track {
+  /* background: var(--secondary); */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border: 2px solid var(--secondary);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
