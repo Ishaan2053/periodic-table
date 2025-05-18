@@ -50,7 +50,7 @@ const PeriodicTable = ({ onElementSelect, selectedCategory }: PeriodicTableProps
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-[repeat(18,70px)] grid-rows-[repeat(10,70px)] my-5 max-w-full overflow-x-auto p-3 pb-[100px]">
+      <div className="grid grid-cols-[repeat(18,70px)] grid-rows-[repeat(10,70px)] my-5 max-w-fullp-3 pb-[100px] overflow-x-hidden w-full">
         <AnimatePresence>
           {isLoaded && periodicTableData.map((element) => {
             // Calculate distance from center for staggered effect
@@ -90,7 +90,7 @@ const PeriodicTable = ({ onElementSelect, selectedCategory }: PeriodicTableProps
 
       {hoveredElement && !selectedElement && (
         <div
-          className="absolute z-100 bg-black/80 rounded p-2 text-xs pointer-events-none transform -translate-x-1/2"
+          className="absolute z-100 bg-black/90 backdrop-blur-sm rounded p-2 text-xs pointer-events-none transform -translate-x-1/2 animate-fade-in"
           style={{
             left: `${Math.min(Math.max(hoveredElement.xpos * 64, 100), window.innerWidth - 100)}px`,
             top: `${hoveredElement.ypos * 64 + 30}px`
@@ -99,7 +99,7 @@ const PeriodicTable = ({ onElementSelect, selectedCategory }: PeriodicTableProps
           <div className="flex flex-col gap-1">
             <strong>{hoveredElement.name}</strong>
             <p>Atomic Number: {hoveredElement.atomicNumber}</p>
-            <p>Click for details</p>
+            <p>Click to know more about {hoveredElement.name}</p>
           </div>
         </div>
       )}

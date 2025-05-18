@@ -86,11 +86,11 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
                 animate={{ x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <Link className='hover:-primary' href={`https://en.wikipedia.org/wiki/${name}`}>
+                <Link className='relative group transition hover:text-blue-500' href={`https://en.wikipedia.org/wiki/${name}`}>
                   {" "}
                   {name}
                 
-                <MoveUpRightIcon className="inline-block ml-1 text-gray-500" size={16} />
+                <MoveUpRightIcon className="group:hover:rotate-45 inline-block ml-1 text-gray-500" size={16} />
              </Link> </motion.h2>
               <div className="flex gap-4 mt-2">
                 <motion.p
@@ -137,7 +137,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
 
           {/* Properties */}
           <motion.div
-            className="col-span-2 space-y-4 p-6 rounded-lg backdrop-blur-sm "
+            className="col-span-2 space-y-4 p-0 rounded-lg backdrop-blur-sm "
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
@@ -230,11 +230,11 @@ interface PropertyCardProps {
 const PropertyCard = ({ icon, name, value, customValue }: PropertyCardProps) => {
   return (
     <motion.div 
-      className="p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-200/20 dark:border-gray-700/30 shadow hover:shadow-lg transition-all"
+      className="relative group duration-1000 p-3 rounded-lg  backdrop-blur-sm border hover:border-gray-200/20 dark:border-gray-700/30 shadow hover:shadow-lg transition-all"
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <div className="flex items-center gap-3">
-        <div className="flex-shrink-0 p-2 rounded-full ">
+        <div className="flex-shrink-0 p-2 rounded-full group-hover:rotate-45 transition-transform duration-300">
           {icon}
         </div>
         <div className="flex-grow">
