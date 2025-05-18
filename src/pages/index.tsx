@@ -98,7 +98,7 @@ export default function Home() {
                 {Object.entries(categoryColors).map(([category, colorClass]) => (
                   <div
                     key={category}
-                    className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
+                    className={`flex items-center gap-2 cursor-pointer px-2 py-1 hover:bg-gray-800 rounded ${
                       selectedCategory === category ? "bg-gray-800" : ""
                     }`}
                     onClick={() => handleLegendClick(category as ElementCategory)}
@@ -111,7 +111,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="{styles.tableContainer}">
+              <div className="">
                 <PeriodicTable
                   onElementSelect={setSelectedElement}
                   selectedCategory={selectedCategory}

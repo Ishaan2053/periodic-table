@@ -61,7 +61,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto p-6 rounded-xl shadow-lg bg-primary"
+        className="max-w-7xl mx-auto p-6 rounded-xl shadow-lg bg-primary absolute top-0 left-0 right-0 z-10"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Element Header */}

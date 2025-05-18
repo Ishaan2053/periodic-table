@@ -70,7 +70,8 @@ const PeriodicTable = ({ onElementSelect, selectedCategory }: PeriodicTableProps
                 }}
                 style={{ gridColumn: element.xpos, gridRow: element.ypos }}
               >
-                <MagneticEffect>               <ElementCell
+                <MagneticEffect>   
+                              <ElementCell
                   element={element}
                   onMouseEnter={() => handleElementHover(element)}
                   onMouseLeave={handleElementLeave}
