@@ -6,9 +6,7 @@ import {
   Atom, Scale, Thermometer, Droplets,
   FlaskConical, User, Search, Ruler, 
   Zap, Package,
-  ExternalLinkIcon,
   MoveUpRightIcon,
-  ArrowUpLeft
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -193,6 +191,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
                           className="hover:text-blue-500 transition-colors "
                         >
                           {name}
+                          <MoveUpRightIcon className="inline-block ml-1 text-gray-500" size={16} />
                         </Link>
                         {index < array.length - 1 ? ', ' : ''}
                       </React.Fragment>

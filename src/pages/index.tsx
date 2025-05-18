@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Roboto_Mono } from "next/font/google";
 import { useState, useEffect } from "react";
 import PeriodicTable from "@/components/PeriodicTable";
 import ElementDetail from "@/components/ElementDetail";
@@ -23,13 +23,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
   subsets: ["latin"],
 });
 
@@ -85,7 +85,7 @@ export default function Home() {
 
   return (
     <main
-      className={`bg-gradient-to-b from-slate-950 to-neutral-950 mx-auto flex min-h-screen flex-col items-center justify-between p-2 overflow-hidden ${geistSans.variable} ${geistMono.variable}`}
+      className={`bg-gradient-to-b from-slate-950 to-neutral-950 mx-auto flex min-h-screen flex-col items-center justify-between p-2 overflow-hidden ${montserrat.variable} ${robotoMono.variable}`}
     >
       <Head>
         <title>Interactive Periodic Table</title>
@@ -108,41 +108,26 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="w-full flex flex-col items-center justify-center flex-grow"
           >
-            <div className="flex md:hidden items-center text-center justify-center text-semibold text-white flex-col text-2xl z-50 pointer-events-none flex-1">
+            {/* Mobile notice */}
+            <div className="flex md:hidden items-center text-center justify-center text-white flex-col text-2xl z-50 pointer-events-none flex-1 font-semibold">
               Switch to desktop mode to view the periodic table
             </div>
 
+            {/* Desktop view */}
             <div className="hidden md:flex flex-col items-center justify-center">
-              {/* LEGEND */}
-              <div className="flex flex-wrap gap-3 w-full p-4 rounded-lg my-4 justify-center">
-                {Object.entries(categoryColors).map(
-                  ([category, colorClass]) => (
-                    <div
-                      key={category}
-                      className={`flex items-center gap-2 cursor-pointer px-2 py-1 hover:bg-gray-800 rounded transition ${
-                        selectedCategory === category ? "bg-gray-800" : ""
-                      }`}
-                      onClick={() =>
-                        handleLegendClick(category as ElementCategory)
-                      }
-                    >
-                      <div className={`${colorClass} w-4 h-4 rounded-sm`}></div>
-                      <span className="text-white capitalize text-sm">
-                        {category.replace(/-/g, " ")}
-                      </span>
-                    </div>
-                  )
-                )}
-              </div>
+              <ElementLegend
+                categories={categoryColors}
+                selectedCategory={selectedCategory}
+                onCategorySelect={handleLegendClick}
+              />
 
-              <div className="">
+              <div>
                 <PeriodicTable
                   onElementSelect={setSelectedElement}
                   selectedCategory={selectedCategory}
                 />
               </div>
 
-              {/* Replace the fixed overlay with Dialog component */}
               <Dialog
                 open={selectedElement !== null}
                 onOpenChange={(isOpen) => {
@@ -170,7 +155,7 @@ export default function Home() {
             </div>
 
             <div className="w-full flex justify-center items-center mt-4">
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm text-center">
                 view{" "}
                 <Link
                   className="hover:text-gray-200 transition"
@@ -179,6 +164,7 @@ export default function Home() {
                 >
                   source code
                 </Link>
+                {" "}  <br/>© 2025. Made during Code Circuit May Hackathon
               </p>
             </div>
           </motion.div>
@@ -241,7 +227,7 @@ function WelcomeScreen({ onGetStarted }: { onGetStarted: () => void }) {
           className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
           variants={itemVariants}
         >
-          Periodic Table Explorer
+          Interactive Periodic Table
         </motion.h1>
 
         <motion.p
@@ -273,7 +259,7 @@ function WelcomeScreen({ onGetStarted }: { onGetStarted: () => void }) {
           <Button
             onClick={onGetStarted}
             size="lg"
-            className="px-8 py-6 text-lg"
+            className="cursor-pointer px-8 py-6 text-lg bg-neutral-950 border-2 border-blue-500 text-white hover:bg-slate-900 hover:text-white transition-colors duration-300"
             variant="default"
             effect="shineHover"
             icon={ArrowRightIcon}
@@ -286,3 +272,31 @@ function WelcomeScreen({ onGetStarted }: { onGetStarted: () => void }) {
     </motion.div>
   );
 }
+
+// Element Legend Component
+const ElementLegend = ({
+  categories,
+  selectedCategory,
+  onCategorySelect,
+}: {
+  categories: Record<ElementCategory, string>;
+  selectedCategory: ElementCategory | null;
+  onCategorySelect: (category: ElementCategory) => void;
+}) => (
+  <div className="flex flex-wrap gap-3 w-full p-4 rounded-lg my-4 justify-center">
+    {Object.entries(categories).map(([category, colorClass]) => (
+      <div
+        key={category}
+        className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded transition
+          ${selectedCategory === category ? "bg-gray-800" : "hover:bg-gray-800"}`}
+        onClick={() => onCategorySelect(category as ElementCategory)}
+      >
+        <div className={`${colorClass} w-4 h-4 rounded-sm`}></div>
+        <span className="text-white capitalize text-sm">
+          {category.replace(/-/g, " ")}
+        </span>
+      </div>
+    ))}
+  </div>
+);
+
