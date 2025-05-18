@@ -232,7 +232,7 @@ export const periodicTableData: Element[] = [
     boilingPoint: 2467,
     discoveredBy: "Hans Christian Ørsted",
     description: "Aluminum is a lightweight, ductile, silvery-white metal that is used in aircraft construction, packaging, and electrical wiring.",
-    xpos: 3,
+    xpos:13,
     ypos: 3
   },
   {
@@ -250,7 +250,7 @@ export const periodicTableData: Element[] = [
     boilingPoint: 3265,
     discoveredBy: "Jöns Jacob Berzelius",
     description: "Silicon is a semiconductor with properties between metals and non-metals, used in electronics, glass, and construction.",
-    xpos: 4,
+    xpos: 14,
     ypos: 3
   },
   {
@@ -268,7 +268,7 @@ export const periodicTableData: Element[] = [
     boilingPoint: 280,
     discoveredBy: "Hennig Brand",
     description: "Phosphorus is a highly reactive nonmetal that is used in fertilizers, fire retardants, and matches.",
-    xpos: 5,
+    xpos: 15,
     ypos: 3
   },
   {
@@ -286,7 +286,7 @@ export const periodicTableData: Element[] = [
     boilingPoint: 444.6,
     discoveredBy: "Ancient Egyptians",
     description: "Sulfur is a highly reactive nonmetal that is used in fertilizers, fire retardants, and matches.",
-    xpos: 6,
+    xpos: 16,
     ypos: 3
   },
   {
@@ -304,7 +304,7 @@ export const periodicTableData: Element[] = [
     boilingPoint: 239.1,
     discoveredBy: "Carl Wilhelm Scheele",
     description: "Chlorine is a highly reactive nonmetal that is used in bleaching, disinfectants, and in the production of plastics.",
-    xpos: 7,
+    xpos: 17,
     ypos: 3
   },
   {
@@ -322,7 +322,7 @@ export const periodicTableData: Element[] = [
     boilingPoint: 87.3,
     discoveredBy: "William Ramsay, Sir William Crookes",
     description: "Argon is a colorless, odorless, inert gas that is used in welding, lighting, and in the production of steel.",
-    xpos: 8,
+    xpos: 18,
     ypos: 3
   },
   {
@@ -1602,7 +1602,7 @@ export const periodicTableData: Element[] = [
     discoveredBy: "André-Louis Debierne",
     description: "Actinium is a soft, silvery-white radioactive metal that glows blue in the dark, used in neutron sources and as a tracer in biochemistry.",
     xpos: 3,
-    ypos: 10
+    ypos: 7
   },
   {
     atomicNumber: 90,

@@ -84,7 +84,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
                 animate={{ x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <Link className='relative group transition hover:text-blue-500' href={`https://en.wikipedia.org/wiki/${name}`}>
+                <Link className='relative group transition hover:text-blue-500' target='_blank' href={`https://en.wikipedia.org/wiki/${name}`}>
                   {" "}
                   {name}
                 
