@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+/* @import "utilities"; */
 /* @custom-variant dark (&:is(.dark *)); */
 
 :root {
@@ -131,5 +131,25 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+
+@layer utilities {
+  .globalScroll {
+    overflow: auto;
+    /* scrollbar-width: thin; */
+    scrollbar-color: hsl(var(--primary)) transparent;
+  }
+  .globalScroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .globalScroll::-webkit-scrollbar-track {
+    background: hsl(var(--secondary)) transparent;
+  }
+  .globalScroll::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary));
+    border-radius: 9999px;
   }
 }
