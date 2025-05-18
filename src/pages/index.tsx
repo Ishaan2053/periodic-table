@@ -68,7 +68,7 @@ export default function Home() {
       icon: (
         <LinkedinIcon className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://www.linkedin.com/in/ishaan2053/",
     },
     {
       title: "Portfolio",

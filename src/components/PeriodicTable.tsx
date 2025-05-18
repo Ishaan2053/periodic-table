@@ -88,21 +88,43 @@ const PeriodicTable = ({ onElementSelect, selectedCategory }: PeriodicTableProps
         </AnimatePresence>
       </div>
 
-      {hoveredElement && !selectedElement && (
-        <div
-          className="absolute z-100 bg-black/90 backdrop-blur-sm rounded p-2 text-xs pointer-events-none transform -translate-x-1/2 animate-fade-in"
-          style={{
-            left: `${Math.min(Math.max(hoveredElement.xpos * 64, 100), window.innerWidth - 100)}px`,
-            top: `${hoveredElement.ypos * 64 + 30}px`
-          }}
-        >
-          <div className="flex flex-col gap-1">
-            <strong>{hoveredElement.name}</strong>
-            <p>Atomic Number: {hoveredElement.atomicNumber}</p>
-            <p>Click to know more about {hoveredElement.name}</p>
-          </div>
-        </div>
-      )}
+{/* TOOLTIP */}
+      <AnimatePresence mode="sync">
+        {hoveredElement && !selectedElement && (
+          <motion.div
+            key={hoveredElement.atomicNumber}
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.9 }}
+            transition={{ 
+              duration: 0.15, 
+              ease: "easeOut" 
+            }}
+            className="absolute z-100 bg-gradient-to-br from-neutral-950 to-gray-900/95 backdrop-blur-md rounded-lg p-3 text-sm pointer-events-none transform -translate-x-1/2 shadow-lg border border-gray-700/50"
+            style={{
+              left: `${Math.min(Math.max(hoveredElement.xpos * 64, 100), window.innerWidth - 100)}px`,
+              top: `${hoveredElement.ypos * 64 + 30}px`
+            }}
+          >
+            <motion.div 
+              className="flex flex-col gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.025 }}
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="font-bold text-base text-white">{hoveredElement.name}</h3>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white/80">{hoveredElement.symbol}</span>
+              </div>
+              <div className="text-gray-300 flex flex-col gap-1">
+                <p>Atomic Number: {hoveredElement.atomicNumber}</p>
+                <p>Atomic Mass: {hoveredElement.atomicMass}</p>
+              </div>
+              <p className="text-blue-300 mt-1 text-xs italic">Click to know more about {hoveredElement.name}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
