@@ -55,13 +55,13 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
   const categoryColor = getCategoryColor(category);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto p-6 rounded-xl shadow-lg bg-primary absolute top-0 left-0 right-0 z-10"
+        className="p-6 rounded-xl shadow-lg bg-primary z-10 -mr-5 overflow-x-hidden"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Element Header */}
@@ -86,7 +86,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
                 animate={{ x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <Link href={`https://en.wikipedia.org/wiki/${name}`}>
+                <Link className='hover:-primary' href={`https://en.wikipedia.org/wiki/${name}`}>
                   {" "}
                   {name}
                 
@@ -214,6 +214,7 @@ const ElementDetail = ({ element }: ElementDetailProps) => {
           </motion.div>
         </div>
       </motion.div>
+      
     </AnimatePresence>
   );
 };

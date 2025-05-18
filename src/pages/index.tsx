@@ -5,11 +5,23 @@ import ElementDetail from "@/components/ElementDetail";
 import { Element, ElementCategory } from "@/types/element";
 import Link from "next/link";
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { GithubIcon, LinkedinIcon, ArrowRightIcon } from "lucide-react";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  ArrowRightIcon,
+  XIcon,
+  GlobeIcon,
+} from "lucide-react";
 import { useLenisScroll } from "@/hooks/useLenisScroll";
 import Head from "next/head";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogClose,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +38,8 @@ export default function Home() {
   const lenis = useLenisScroll();
 
   const [selectedElement, setSelectedElement] = useState<Element | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<ElementCategory | null>(null);
+  const [selectedCategory, setSelectedCategory] =
+    useState<ElementCategory | null>(null);
   const [showWelcome, setShowWelcome] = useState(true);
 
   const categoryColors: Record<ElementCategory, string> = {
@@ -48,7 +61,7 @@ export default function Home() {
       icon: (
         <GithubIcon className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://github.com/Ishaan2053",
     },
     {
       title: "LinkedIn",
@@ -56,6 +69,13 @@ export default function Home() {
         <LinkedinIcon className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "#",
+    },
+    {
+      title: "Portfolio",
+      icon: (
+        <GlobeIcon className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://www.ishaan2053.tech/",
     },
   ];
 
@@ -75,12 +95,12 @@ export default function Home() {
 
       <AnimatePresence mode="wait">
         {showWelcome ? (
-          <WelcomeScreen 
-            key="welcome" 
-            onGetStarted={() => setShowWelcome(false)} 
+          <WelcomeScreen
+            key="welcome"
+            onGetStarted={() => setShowWelcome(false)}
           />
         ) : (
-          <motion.div 
+          <motion.div
             key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -88,27 +108,31 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="w-full flex flex-col items-center justify-center flex-grow"
           >
-            <div className="flex md:hidden items-center text-center justify-center text-semibold text-white flex-col text-2xl z-50 pointer-events-none"> 
+            <div className="flex md:hidden items-center text-center justify-center text-semibold text-white flex-col text-2xl z-50 pointer-events-none flex-1">
               Switch to desktop mode to view the periodic table
             </div>
 
             <div className="hidden md:flex flex-col items-center justify-center">
               {/* LEGEND */}
               <div className="flex flex-wrap gap-3 w-full p-4 rounded-lg my-4 justify-center">
-                {Object.entries(categoryColors).map(([category, colorClass]) => (
-                  <div
-                    key={category}
-                    className={`flex items-center gap-2 cursor-pointer px-2 py-1 hover:bg-gray-800 rounded transition ${
-                      selectedCategory === category ? "bg-gray-800" : ""
-                    }`}
-                    onClick={() => handleLegendClick(category as ElementCategory)}
-                  >
-                    <div className={`${colorClass} w-4 h-4 rounded-sm`}></div>
-                    <span className="text-white capitalize text-sm">
-                      {category.replace(/-/g, " ")}
-                    </span>
-                  </div>
-                ))}
+                {Object.entries(categoryColors).map(
+                  ([category, colorClass]) => (
+                    <div
+                      key={category}
+                      className={`flex items-center gap-2 cursor-pointer px-2 py-1 hover:bg-gray-800 rounded transition ${
+                        selectedCategory === category ? "bg-gray-800" : ""
+                      }`}
+                      onClick={() =>
+                        handleLegendClick(category as ElementCategory)
+                      }
+                    >
+                      <div className={`${colorClass} w-4 h-4 rounded-sm`}></div>
+                      <span className="text-white capitalize text-sm">
+                        {category.replace(/-/g, " ")}
+                      </span>
+                    </div>
+                  )
+                )}
               </div>
 
               <div className="">
@@ -118,25 +142,42 @@ export default function Home() {
                 />
               </div>
 
-              {selectedElement && (
-                <div className=''>
-                  <ElementDetail
-                    element={selectedElement}
-                    showAtomicStructure={true}
-                  />
-                </div>
-              )}
+              {/* Replace the fixed overlay with Dialog component */}
+              <Dialog
+                open={selectedElement !== null}
+                onOpenChange={(isOpen) => {
+                  if (!isOpen) setSelectedElement(null);
+                }}
+              >
+                <DialogContent className="min-w-[70vw] w-full bg-primary pr-5 max-h-[95vh] overflow-y-scroll overflow-x-hidden p-0 border-none">
+                  <DialogClose className="hover:rotate-180 transition duration-1000 ease-in-out absolute top-4 right-4 z-50 rounded-full bg-gray-800 p-2 text-white hover:bg-gray-700">
+                    <XIcon className="h-4 w-4" />
+                    <span className="sr-only">Close</span>
+                  </DialogClose>
+
+                  {selectedElement && (
+                    <ElementDetail
+                      element={selectedElement}
+                      showAtomicStructure={true}
+                    />
+                  )}
+                </DialogContent>
+              </Dialog>
             </div>
-            
+
             <div className="flex items-center justify-center mt-auto">
               <FloatingDock items={links} />
             </div>
-            
+
             <div className="w-full flex justify-center items-center mt-4">
               <p className="text-gray-400 text-sm">
-                Made by{" "}
-                <Link href="https://www.ishaan2053.tech/" target="_blank">
-                  Ishaan2053
+                view{" "}
+                <Link
+                  className="hover:text-gray-200 transition"
+                  href="https://github.com/Ishaan2053/periodic-table"
+                  target="_blank"
+                >
+                  source code
                 </Link>
               </p>
             </div>
@@ -169,21 +210,21 @@ function WelcomeScreen({ onGetStarted }: { onGetStarted: () => void }) {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: {
         type: "spring",
         stiffness: 300,
-        damping: 24
-      }
+        damping: 24,
+      },
     },
-    exit: { 
-      y: -20, 
+    exit: {
+      y: -20,
       opacity: 0,
       transition: {
-        duration: 0.2
-      }
+        duration: 0.2,
+      },
     },
   };
 
@@ -195,41 +236,41 @@ function WelcomeScreen({ onGetStarted }: { onGetStarted: () => void }) {
       animate="visible"
       exit="exit"
     >
-      <motion.div
-        className="space-y-8"
-        variants={containerVariants}
-      >
-        <motion.h1 
+      <motion.div className="space-y-8" variants={containerVariants}>
+        <motion.h1
           className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
           variants={itemVariants}
         >
           Periodic Table Explorer
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto"
           variants={itemVariants}
         >
-          Discover the elements that make up our universe with this interactive periodic table
+          Discover the elements that make up our universe with this interactive
+          periodic table
         </motion.p>
-        
-        <motion.div
-          variants={itemVariants}
-        >
+
+        <motion.div variants={itemVariants}>
           <p className="text-gray-400 text-sm mb-8">
             Created by{" "}
-            <Link href="https://www.ishaan2053.tech/" target="_blank" className="underline hover:text-blue-400 transition-colors">
+            <Link
+              href="https://www.ishaan2053.tech/"
+              target="_blank"
+              className="underline hover:text-blue-400 transition-colors"
+            >
               Ishaan2053
             </Link>
           </p>
         </motion.div>
-        
+
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button 
+          <Button
             onClick={onGetStarted}
             size="lg"
             className="px-8 py-6 text-lg"
